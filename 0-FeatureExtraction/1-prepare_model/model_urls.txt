@@ -1,0 +1,2 @@
+See https://github.com/facebookresearch/SlowFast/blob/main/MODEL_ZOO.md, "SLowFast: Kinetics/c2/SLOWFAST_8x8_R50"
+URL: https://dl.fbaipublicfiles.com/pyslowfast/model_zoo/kinetics400/SLOWFAST_8x8_R50.pkl

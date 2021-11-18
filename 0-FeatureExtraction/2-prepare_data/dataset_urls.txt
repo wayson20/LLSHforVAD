@@ -1,0 +1,3 @@
+Avenue: http://www.cse.cuhk.edu.hk/leojia/projects/detectabnormal/dataset.html
+ShanghaiTech: https://github.com/StevenLiuWen/sRNN_TSC_Anomaly_Detection
+Corridor: https://rodrigues-royston.github.io/Multi-timescale_Trajectory_Prediction
