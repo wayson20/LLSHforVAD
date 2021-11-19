@@ -21,7 +21,7 @@ class VAD_Dataset(tc_Dataset):
         self.root_dir = root_dir
         self.snippet_len = snippet_len
         self.snippet_itv = snippet_itv
-        self.frm_name_len = int(frm_name_len)
+        self.frm_name_len = frm_name_len
 
         self.vid_len_dict = self._get_video_length()
         self.vid_name_list = sorted(list(self.vid_len_dict.keys()))
@@ -52,7 +52,7 @@ class VAD_Dataset(tc_Dataset):
 
     def __getitem__(self, vid_idx) -> Tuple[str, torch.Tensor]:
         vid_name = self.vid_name_list[vid_idx]
-        vid_stack = self._sample_all_frms(vid_name)  # vid_stack: [vid_len, 3, H, W]
+        vid_stack = self._sample_all_frms(vid_name)  # vid_stack: [vid_len, C, H, W]
 
         return vid_name, vid_stack
 

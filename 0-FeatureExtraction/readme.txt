@@ -10,13 +10,19 @@
 2.  Prepare datasets.
     1)  Download Avenue, ShanghaiTech and Corridor datasets.
         See `2-prepare_data/dataset_urls.txt`.
-    2)  Cd `2-prepare_data` and run `extract_frames.py` to extract frames for videos. Use `--help` to see the usage.
+    2)  Cd `2-prepare_data/` and run `extract_frames.py` to extract frames for videos. Use `--help` to see the usage.
         ST: only need to do this for the training videos.
         Avenue: extract frames for both training & testing videos.
-        Corridor: use `mvfile_corridor.py` to put all the training/testing  videos in one directory first, and then extract frames (use `--skip_first` option).
+        Corridor: use `mvfile_corridor.py` to put all the training/testing videos in one directory first, and then extract frames (use `--skip_first` option).
     3)  Convert the frame-level labels to '.npz' file.
         We have done this cumbersome step. The '.npz' files can be seen in `groundtruths/`.
         '.npz' file: keys: video names; values: 0 for normality, 1 for anomaly.
 
 3.  Extract features.
-
+    1)  ShanghaiTech & Avenue
+        Cd `3-extract_features/for_ST_Avenue/`.
+        Run `run.sh` to extract features for ST and Avenue datasets.
+    2)  Corridor
+        Cd `3-extract_features/for_Corridor/`.
+        Run `recrop.py` first to extract 3 crops of each frame, and then run `run.sh` to extract features for Corridor dataset.
+        
