@@ -23,7 +23,7 @@ parser.add_argument('--Ks', type=int, nargs='+', required=True,
                     help='A list of {K}s.')
 # Data path
 parser.add_argument('--query_data', type=str, required=True,
-                    help='Path to the testing data (video-level files).')
+                    help='Path to the testing data (video-level-packaged files).')
 parser.add_argument('--dist_dir', type=str, required=True,
                     help='Path to the distance dir.')
 parser.add_argument('--gtnpz', type=str, required=True,

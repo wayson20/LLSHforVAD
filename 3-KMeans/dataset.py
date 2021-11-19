@@ -10,7 +10,7 @@ from typing import Tuple
 class TrainingSet(tc_Dataset):
     def __init__(self, root_dir: str):
         '''
-        root_dir: the dir containing training data (snippet-level files)
+        root_dir: the dir containing training data (snippet-level-packaged files)
         '''
         super().__init__()
         self.root_dir = root_dir
@@ -44,7 +44,7 @@ class TrainingSet(tc_Dataset):
 class TestingSet(tc_Dataset):
     def __init__(self, root_dir: str):
         '''
-        root_dir: the dir containing testing data (video-level files)
+        root_dir: the dir containing testing data (video-level-packaged files)
         '''
         super().__init__()
         self.root_dir = root_dir

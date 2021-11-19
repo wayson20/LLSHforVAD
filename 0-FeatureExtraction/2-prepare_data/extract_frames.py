@@ -10,6 +10,8 @@ parser.add_argument('--video_dir', type=str, required=True,
                     help="The dir containing videos. E.g. 'video_dir'/[01_001.avi, 01_002.avi, ...]")
 parser.add_argument('--frame_dir', type=str, required=True,
                     help="The dir to save frames. All the frames of a video will be saved in a directory. E.g. 'frame_dir'/[01_001/, 01_002/, ...]")
+parser.add_argument('--frm_name_len', type=int, default=6,
+                    help="length of the frame name, e.g., frm_name_len=6: '000000.jpg'")
 parser.add_argument('--skip_first', action='store_true',
                     help="Whether to skip the first frame or not. **For Corridor dataset, please use this option since the first frame is black.**")
 parser.add_argument('--workers', type=int, default=48,
@@ -18,6 +20,7 @@ parser.add_argument('--workers', type=int, default=48,
 args = parser.parse_args()
 video_dir: str = args.video_dir
 frame_dir: str = args.frame_dir
+frm_name_len: int = args.frm_name_len
 skip_first: bool = args.skip_first
 workers: int = args.workers
 
@@ -36,7 +39,7 @@ def extract_frames(video_name: str):
 
     i_frame = 0
     while suc:
-        cv2.imwrite(join(dst_dir, f"{str(i_frame).zfill(6)}.jpg"), frame, (cv2.IMWRITE_JPEG_QUALITY, 100))
+        cv2.imwrite(join(dst_dir, f"{str(i_frame).zfill(frm_name_len)}.jpg"), frame, (cv2.IMWRITE_JPEG_QUALITY, 100))
         i_frame += 1
         suc, frame = video_cap.read()
 

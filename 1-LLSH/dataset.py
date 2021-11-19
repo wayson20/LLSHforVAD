@@ -9,7 +9,7 @@ from typing import Tuple
 class TrainingSet(tc_Dataset):
     def __init__(self, root_dir: str, t_rand_range: int, iterations: int):
         '''
-        root_dir: the dir containing training data (snippet-level files)
+        root_dir: the dir containing training data (snippet-level-packaged files)
         t_rand_range: a nearby randomly sampling range
         iterations: to simulate how many epochs
         '''
@@ -76,7 +76,7 @@ class TrainingSet(tc_Dataset):
 class TestingSet(tc_Dataset):
     def __init__(self, root_dir: str):
         '''
-        root_dir: the dir containing testing data (video-level files)
+        root_dir: the dir containing testing data (video-level-packaged files)
         '''
         super().__init__()
         self.root_dir = root_dir

@@ -33,7 +33,7 @@ TIME_STAMP = get_time_stamp()
 parser = argparse.ArgumentParser(description='Learnable Locality-Sensitive Hashing for Video Anomaly Detection')
 # Data path
 parser.add_argument('data', type=str,
-                    help='Path to the training data (snippet-level files).')
+                    help='Path to the training data (snippet-level-packaged files).')
 # Common training settings
 parser.add_argument('--lr', '--learning_rate', default=0.001, type=float, choices=(0.001,),
                     help='Learning rate.')

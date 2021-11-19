@@ -28,9 +28,9 @@ TIME_STAMP = get_time_stamp()
 parser = argparse.ArgumentParser(description='Learnable Locality-Sensitive Hashing for Video Anomaly Detection')
 # Data path
 parser.add_argument('--index_data', type=str, required=True,
-                    help='Path to the training data (snippet-level files).')
+                    help='Path to the training data (snippet-level-packaged files).')
 parser.add_argument('--query_data', type=str, required=True,
-                    help='Path to the testing data (video-level files).')
+                    help='Path to the testing data (video-level-packaged files).')
 parser.add_argument('--resume', type=str, required=True,
                     help='Path to a checkpoint')
 parser.add_argument('--gtnpz', type=str, required=True,
