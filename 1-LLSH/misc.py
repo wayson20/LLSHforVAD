@@ -83,6 +83,7 @@ def save_checkpoint(state, is_best, filedir, epoch) -> None:
 
     filename = join(filedir, f'checkpoint_{epoch}.pth.tar')
     torch.save(state, filename)
+    print(f"Saved {filename}")
     if is_best:
         shutil.copyfile(filename, join(filedir, 'checkpoint_best.pth.tar'))
 

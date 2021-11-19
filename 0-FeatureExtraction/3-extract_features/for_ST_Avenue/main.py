@@ -1,6 +1,7 @@
 import os
 from os.path import join, exists, dirname
 import numpy as np
+from collections import OrderedDict
 
 import torch
 from torch import multiprocessing as mp
@@ -54,7 +55,7 @@ def extract_feature_short_sp(proc_id, num_gpus, num_procs, cfg):
             print(f"proc {proc_id} ({i_vid+1}/{len(dataset)}): {vid_name}")
             vid_name, frame_stack = dataset[i_vid]
 
-            feature_dict = {}
+            feature_dict = OrderedDict()
 
             vid_name, frame_stack = dataset[i_vid]
 

@@ -114,10 +114,9 @@ def cal_anomaly_score(i_proc: int, proc_cnt: int, score_queue: mp.Queue, args, l
         vid_name, vid_data = test_dataset[vid_idx]
 
         print(f"({vid_idx+1}/{len(test_dataset)}): {vid_name}")
-        vid_scores: np.ndarray = np.zeros(len(vid_data))
 
-        n_snippets = len(test_dataset.feat_container[vid_name])
-        assert n_snippets == vid_scores.shape[0]
+        n_snippets = len(vid_data)
+        vid_scores: np.ndarray = np.zeros(n_snippets)
 
         score_dict = {}
         for _snippet_idx in range(n_snippets):

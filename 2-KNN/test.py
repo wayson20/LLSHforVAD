@@ -43,16 +43,12 @@ def cal_anomaly_score(i_proc: int, proc_cnt: int, score_queue: mp.Queue, args):
     n_gpus = len(os.environ['CUDA_VISIBLE_DEVICES'].split(','))
 
     for vid_idx in range(i_proc, len(test_dataset), proc_cnt):
-        score_dict = {}
         vid_name, vid_data = test_dataset[vid_idx]
 
         print(f"({vid_idx+1}/{len(test_dataset)}): {vid_name}", end=' ', flush=True)
 
-        vid_score_dict = {_K: np.zeros(len(vid_data)) for _K in args.Ks}
-
-        n_snippets = len(test_dataset.feat_container[vid_name])
-        for vid_score in vid_score_dict.values():
-            assert n_snippets == vid_score.shape[0]
+        n_snippets = len(vid_data)
+        vid_score_dict = {_K: np.zeros(n_snippets) for _K in args.Ks}
 
         _ts = ttime()
         print(f'Loading \'{vid_name}_dist.pth\'', end=' ... ', flush=True)
@@ -62,6 +58,7 @@ def cal_anomaly_score(i_proc: int, proc_cnt: int, score_queue: mp.Queue, args):
         assert len(dist_mat) % n_snippets == 0, f"{vid_name}, {n_snippets}, {len(dist_mat)}"
         dist_mat = dist_mat.view(n_snippets, len(dist_mat) // n_snippets, dist_mat.shape[1])
 
+        score_dict = {}
         for _snippet_idx in tqdm.tqdm(range(n_snippets), desc=vid_name):
             _snippet_dist = dist_mat[_snippet_idx].cuda(i_proc % n_gpus)
             _sorted_dist_val, _sorted_dist_ind = _snippet_dist.sort(dim=1)

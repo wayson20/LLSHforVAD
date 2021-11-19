@@ -10,7 +10,7 @@ parser = argparse.ArgumentParser("Crop 3 images for Corridor dataset.")
 parser.add_argument("--video_dir", type=str, required=True,
                     help="the dir containing extracted frames, e.g., 'video_dir'/209/[000000.jpg, ...] ")
 parser.add_argument("--crop_dir", type=str, required=True,
-                    help="the dir to save cropped images, e.g. 'crop_dir'/209/[000000_1.jpg, 000000_2.jpg, 000000_3.jpg ...]")
+                    help="the dir to save cropped images, e.g. 'crop_dir'/(209/[000000_1.jpg, 000000_2.jpg, 000000_3.jpg ...])")
 parser.add_argument('--workers', type=int, default=48,
                     help="The number of processes.")
 

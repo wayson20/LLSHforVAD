@@ -95,7 +95,7 @@ def main():
     args.distributed = args.world_size > 1 or args.mp_distributed
 
     ngpus_per_node = torch.cuda.device_count()
-    if len(ngpus_per_node) != 1:
+    if ngpus_per_node != 1:
         print("Please use only one GPU.")
         exit()
 

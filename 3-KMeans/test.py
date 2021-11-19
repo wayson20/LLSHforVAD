@@ -47,16 +47,14 @@ def cal_anomaly_score(i_proc: int, proc_cnt: int, score_queue: mp.Queue, args):
     k_centers = k_centers.unsqueeze(1).repeat(1, Ncrop, 1)  # [K, Ncrop, ddim]
 
     for vid_idx in range(i_proc, len(test_dataset), proc_cnt):
-        score_dict = {}
         vid_name, vid_data = test_dataset[vid_idx]
 
         print(f"({vid_idx+1}/{len(test_dataset)}): {vid_name}")
 
-        vid_scores: np.ndarray = np.zeros(len(vid_data))
+        n_snippets = len(vid_data)
+        vid_scores: np.ndarray = np.zeros(n_snippets)
 
-        n_snippets = len(test_dataset.feat_container[vid_name])
-        assert n_snippets == vid_scores.shape[0]
-
+        score_dict = {}
         for _snippet_idx in range(n_snippets):
             _snippet_data: torch.Tensor = vid_data[_snippet_idx]  # [Ncrop, T, H, W, C]
             _snippet_data = _snippet_data.flatten(1)  # [Ncrop, ddim]

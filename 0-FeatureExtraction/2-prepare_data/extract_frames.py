@@ -9,7 +9,7 @@ parser = argparse.ArgumentParser("Extract frames.")
 parser.add_argument('--video_dir', type=str, required=True,
                     help="The dir containing videos. E.g. 'video_dir'/[01_001.avi, 01_002.avi, ...]")
 parser.add_argument('--frame_dir', type=str, required=True,
-                    help="The dir to save frames. All the frames of a video will be saved in a directory. E.g. 'frame_dir'/[01_001/, 01_002/, ...]")
+                    help="The dir to save frames. All the frames of a video will be saved in a directory. E.g. 'frame_dir'/([01_001/, 01_002/, ...])")
 parser.add_argument('--frm_name_len', type=int, default=6,
                     help="length of the frame name, e.g., frm_name_len=6: '000000.jpg'")
 parser.add_argument('--skip_first', action='store_true',
