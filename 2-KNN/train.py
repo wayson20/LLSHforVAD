@@ -3,7 +3,6 @@ import os
 from os.path import join
 from math import ceil
 from time import time as ttime
-import tqdm
 
 import torch
 import torch.multiprocessing as mp

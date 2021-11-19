@@ -28,4 +28,7 @@
         Then run `run.sh` to extract features for Corridor dataset.
     3)  Generate snippet-level-packaged features.
         Step 1) and step 2) generated video-level-packaged features. However, snippet-level-packaged will also be used afterwards.
-        Cd  `3-extract_features` and run `snippet_level_packaged.py` to convert video-level-packaged features to snippet-level-packaged features. Use '--help' to see the usage.
+        Cd  `3-extract_features` and run `snippet_level_packaged.py` to convert video-level-packaged features to snippet-level-packaged features.
+
+Now, for each dataset, we have got 1) video-level-packaged features, 2) snippet-level-packaged features, and 3) frame-level lables.
+We use these features and lables in the training and testing codes.

@@ -2,7 +2,6 @@ import argparse
 import numpy as np
 from collections import OrderedDict
 import tqdm
-import os
 from os import listdir
 from os.path import join, basename, isfile
 from time import time as ttime
