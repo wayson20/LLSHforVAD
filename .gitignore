@@ -6,3 +6,4 @@ save.*
 *.pth
 *.pkl
 TEMP
+*.yaml
