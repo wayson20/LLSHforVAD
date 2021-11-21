@@ -59,7 +59,7 @@ class TrainingSet(tc_Dataset):
 
         return self._load_snippet(_vid_name, _t_idx, _s_idx)
 
-    def __getitem__(self, idx) -> List[torch.Tensor, torch.Tensor]:
+    def __getitem__(self, idx) -> Tuple[torch.Tensor, torch.Tensor]:
         '''
         Sample two snippets. One is the `idx`-th snippet and another one is its nearby snippet.
         '''
@@ -71,7 +71,7 @@ class TrainingSet(tc_Dataset):
         _snippet_0: torch.Tensor = self._load_snippet(_vid_name, _t_idx, _s_idx)
         _snippet_1 = self._two_transform(_vid_name, _t_idx, _s_idx)
 
-        return [_snippet_0, _snippet_1]
+        return _snippet_0, _snippet_1
 
     def __len__(self):
         '''

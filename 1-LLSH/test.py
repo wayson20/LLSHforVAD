@@ -5,7 +5,7 @@ import tqdm
 from os import listdir
 from os.path import join, basename, isfile
 from time import time as ttime
-from typing import Union
+from typing import Union, Tuple
 
 import torch
 import torch.cuda
@@ -43,7 +43,7 @@ parser.add_argument('--len_hash_code', default=32, type=int, choices=(32,),
 parser.add_argument('--num_hash_layer', default=8, type=int, choices=(8,),
                     help='Number of hash layers, i.e., b')
 # MoCo settings
-parser.add_argument('--moco_k', default=8192, type=int, choices=(8192, 2048),
+parser.add_argument('--moco_k', default=8192, type=int, choices=(8192, 2048), required=True,
                     help='Length of the queue, i.e., l (ST: 8192; Avenue: 2048; Corridor: 8192)' +
                     'Actually, it is not used in testing phase.')
 parser.add_argument('--moco_m', default=0.999, type=float, choices=(0.999,),
@@ -61,7 +61,7 @@ parser.add_argument('--print_model', action='store_true',
                     help='Print the model.')
 
 
-def load_model(args) -> torch.nn.Module:
+def load_model(args) -> Tuple[HashNet, int]:
     model = MoCo(moco_K=args.moco_k,
                  moco_m=args.moco_m,
                  moco_T=args.moco_t,
@@ -77,6 +77,7 @@ def load_model(args) -> torch.nn.Module:
             print("Loading checkpoint '{}'".format(args.resume))
 
             checkpoint = torch.load(args.resume, map_location='cpu')
+            epoch: int = checkpoint['epoch']
 
             new_state_dict = OrderedDict()
             for k, v in checkpoint['state_dict'].items():
@@ -90,7 +91,7 @@ def load_model(args) -> torch.nn.Module:
     else:
         raise NotImplementedError("A checkpoint should be loaded.")
 
-    encoder_q = model.encoder_q
+    encoder_q: HashNet = model.encoder_q
     encoder_q.eval()
 
     del model
@@ -98,7 +99,7 @@ def load_model(args) -> torch.nn.Module:
     if args.print_model:
         print(encoder_q)
 
-    return encoder_q
+    return encoder_q, epoch
 
 
 def cal_anomaly_score(i_proc: int, proc_cnt: int, score_queue: mp.Queue, args, llsh_pth: str):
@@ -146,7 +147,8 @@ if __name__ == '__main__':
     gt_npz = np.load(args.gtnpz)
 
     # Load model
-    _hash_net: HashNet = load_model(args)
+    _hash_net, epoch = load_model(args)
+
     llsh_inst = None
     if args.light:
         llsh_inst = LightLLSH(_hash_net)
@@ -166,7 +168,7 @@ if __name__ == '__main__':
     llsh_inst.cvt_list2tensor()
 
     # Save the model temporarily
-    llsh_pth = join(get_result_dir(), f"llsh_inst_{TIME_STAMP}.pth")
+    llsh_pth = join(get_result_dir(), f"llsh_inst_{TIME_STAMP}_{epoch}.pth")
     torch.save(llsh_inst, llsh_pth)
     del llsh_inst
     torch.cuda.empty_cache()
@@ -191,8 +193,7 @@ if __name__ == '__main__':
     logger.info(f"Micro AUC: {micro_auc*100:.1f}%")
 
     # Save scores
-    epoch_name: str = basename(args.resume).split('_')[1].split('.')[0]
-    np.savez(join(get_result_dir(), f"score_dict_{TIME_STAMP}_{epoch_name}.npz"), **score_dict)
+    np.savez(join(get_result_dir(), f"score_dict_{TIME_STAMP}_{epoch}.npz"), **score_dict)
 
     t1 = ttime()
     logger.info(f"Time={(t1-t0)/60:.1f} min")

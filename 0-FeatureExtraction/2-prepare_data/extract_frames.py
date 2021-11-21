@@ -11,7 +11,7 @@ parser.add_argument('--video_dir', type=str, required=True,
 parser.add_argument('--frame_dir', type=str, required=True,
                     help="The dir to save frames. All the frames of a video will be saved in a directory. E.g. 'frame_dir'/([01_001/, 01_002/, ...])")
 parser.add_argument('--frm_name_len', type=int, default=6,
-                    help="length of the frame name, e.g., frm_name_len=6: '000000.jpg'")
+                    help="length of the frame name, e.g., frm_name_len=6: '000000.jpg', '000001.jpg', ...")
 parser.add_argument('--skip_first', action='store_true',
                     help="Whether to skip the first frame or not. **For Corridor dataset, please use this option since the first frame is black.**")
 parser.add_argument('--workers', type=int, default=48,

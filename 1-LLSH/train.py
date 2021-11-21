@@ -39,7 +39,7 @@ parser.add_argument('--lr', '--learning_rate', default=0.001, type=float, choice
                     help='Learning rate.')
 parser.add_argument('--epochs', default=1, type=int, choices=(0, 1),
                     help='Number of total epochs to run.')
-parser.add_argument('--iterations', default=60, type=int, choices=(60,),
+parser.add_argument('--iterations', default=60, type=int, choices=(60, 10),
                     help='A way to simulate more epochs. (ST: 60; Avenue: 60; Corridor: 10)')
 parser.add_argument('--batch_size', default=256, type=int, choices=(256, 32),
                     help='Batch size. (ST: 256; Avenue: 32; Corridor: 256)')
@@ -83,7 +83,7 @@ parser.add_argument('--moco_t', default=0.2, type=float, choices=(0.2,),
 # Others
 parser.add_argument('--note', default="", type=str,
                     help='A note for this experiment')
-parser.add_argument('-p', '--print_freq', default=10, type=int,
+parser.add_argument('--print_freq', default=10, type=int,
                     help='Print frequency.')
 parser.add_argument('--print_model', action='store_true',
                     help='Print the model.')
