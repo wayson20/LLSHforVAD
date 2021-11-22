@@ -23,7 +23,7 @@ parser.add_argument('--query_data', type=str, required=True,
                     help='Path to the testing data (snippet-level-packaged files).')
 # Others
 parser.add_argument('--workers', default=4, type=int,
-                    help='Number of processes for evaluation.')
+                    help='Number of processes.')
 parser.add_argument('--note', default="", type=str,
                     help='A note for this experiment')
 

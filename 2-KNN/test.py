@@ -106,7 +106,7 @@ if __name__ == '__main__':
         logger.info(f"K={_K}, Micro AUC: {micro_auc*100:.1f}%")
 
     # Save scores
-    torch.save(score_dict, join(get_result_dir(), f"scoredict_{TIME_STAMP}_{len(Ks)}Ks.pth"))
+    torch.save(score_dict, join(get_result_dir(), f"score_dict_{TIME_STAMP}_{len(Ks)}Ks.pth"))
 
     t1 = ttime()
     logger.info(f"Time={(t1-t0)/60:.1f} min")

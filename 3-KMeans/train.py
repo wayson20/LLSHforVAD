@@ -22,7 +22,7 @@ parser.add_argument('--index_data', type=str, required=True,
                     help='Path to the training data (snippet-level-packaged files).')
 # Others
 parser.add_argument('--workers', default=24, type=int,
-                    help='Number of processes for evaluation.')
+                    help='Number of processes.')
 parser.add_argument('--note', default="", type=str,
                     help='A note for this experiment')
 

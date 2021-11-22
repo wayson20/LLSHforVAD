@@ -39,7 +39,7 @@ def cal_anomaly_score(i_proc: int, proc_cnt: int, score_queue: mp.Queue, args):
     '''
     kmeans: KMeans = torch.load(args.resume)
     k_centers: torch.Tensor = torch.from_numpy(kmeans.cluster_centers_)  # [K, ddim]
-    assert args.K == len(k_centers), f"args.K({args.K}) != k_centers({len(k_centers)})"
+    assert args.K == len(k_centers), f"args.K ({args.K}) != resumed K ({len(k_centers)})"
 
     test_dataset = TestingSet(root_dir=args.query_data)
     Ncrop = len(test_dataset[0][1][0])
@@ -100,7 +100,7 @@ if __name__ == '__main__':
     logger.info(f"Micro AUC: {micro_auc*100:.1f}%")
 
     # Save scores
-    torch.save(score_dict, join(get_result_dir(), f"scoredict_{TIME_STAMP}_K{args.K}.pth"))
+    torch.save(score_dict, join(get_result_dir(), f"score_dict_{TIME_STAMP}_K{args.K}.pth"))
 
     t1 = ttime()
     logger.info(f"Time={(t1-t0)/60:.1f} min")

@@ -10,7 +10,7 @@ python test.py \
   --query_data "path to the **video**-level-packaged testing data" \
   --resume "path to the checkpoint, e.g. ../save.ckpts/train_mmdd-HHMMSS/checkpoint_0|1.pth.tar" \
   --moco_k 8192 \
-  --gtnpz "path to the 'dataset_gt.npz' file" \
+  --gtnpz "path to the '{dataset}_gt.npz' file" \
   --note "" # --light
 
 # The testing models and scores will be saved in "../save.results/1-LLSH/"
