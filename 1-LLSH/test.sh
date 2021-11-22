@@ -1,7 +1,7 @@
 # One GPU is enough. Plese only use one GPU.
 export CUDA_VISIBLE_DEVICES=0
 
-# Resume the checkpoint saved in "../save.ckpts/1-LLSH/train_mmdd-HHMMSS/checkpoint_0|1.pth.tar"
+# Resume the checkpoint saved in "../save.ckpts/1-LLSH/train_mmdd-HHMMSS/checkpoint_0|1.pth.tar". Note that '--moco_k' should be consistent with the checkpoint.
 # checkpoint_0.pth.tar: LSH; checkpoint_1.pth.tar: LLSH
 # Append '--light' option to use light-LLSH.
 

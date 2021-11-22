@@ -1,7 +1,6 @@
 import argparse
 import builtins
 import time
-import os
 
 import torch
 import random
@@ -26,6 +25,10 @@ from dataset import TrainingSet
 from misc import get_time_stamp, get_logger, format_args, get_ckpt_dir
 from misc import AverageMeter, ProgressMeter, accuracy, save_checkpoint
 
+'''
+Reference:
+https://github.com/facebookresearch/moco
+'''
 
 # os.environ['CUDA_VISIBLE_DEVICES'] = '2' # It's better to use `export CUDA_VISIBLE_DEVICES=` in shell.
 TIME_STAMP = get_time_stamp()
